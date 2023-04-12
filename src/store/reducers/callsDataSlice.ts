@@ -22,15 +22,15 @@ const initialState = {
 export const getCallsData = createAsyncThunk<
   ICallsData, // return type
   {
-    start: string;
-    end: string;
-    offset: string;
-    search: string;
-    in_out: string;
-    from_type: string;
-    person_id: string;
-    sources: string;
-    errors: string;
+    start?: string;
+    end?: string;
+    offset?: number;
+    search?: string;
+    in_out?: string;
+    from_type?: string;
+    person_id?: string;
+    sources?: string;
+    errors?: string;
   }, // args type
   {
     dispatch: AppDispatch;
