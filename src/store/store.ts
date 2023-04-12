@@ -1,25 +1,16 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { storage, storageSetItem } from '../utils/storage';
-import currentWeatherSlice from './reducers/currentWeatherSlice';
-import favoriteCitiesSlice from './reducers/favoriteCitiesSlice';
-import forecastWeatherSlice from './reducers/forecastWeatherSlice';
-import statisticsSlice from './reducers/statisticsSlice';
 import { useDispatch } from 'react-redux';
+import callsDataSlice from './reducers/callsDataSlice';
 
-export const rootReducer = combineReducers({
-  currentWeatherSlice,
-  favoriteCitiesSlice,
-  forecastWeatherSlice,
-  statisticsSlice
-});
+export const rootReducer = combineReducers({ callsDataSlice });
 
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false
-    })
+  reducer: rootReducer
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: false
+  //   })
 });
 
 store.subscribe(() => {

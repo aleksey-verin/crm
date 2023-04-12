@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface ImgPlusProps {
-  fill: string;
-  opacity: string;
+  fill?: string | null;
+  opacity?: string | null;
 }
 
 const ImgPlus = ({ fill, opacity }: ImgPlusProps) => {

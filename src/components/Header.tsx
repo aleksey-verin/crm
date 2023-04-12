@@ -1,29 +1,27 @@
-import React from 'react'
-import Search from './commonUI/Search'
+import React from 'react';
 
-import CurrentDate from './Header/CurrentDate'
-import Parameters from './Header/Parameters'
-import Company from './Header/Company'
-import User from './Header/User'
+import CurrentDate from './header/CurrentDate';
+import Parameters from './header/Parameters';
+import Company from './header/Company';
+import User from './header/User';
+import Search from './commonUI/Search';
 
-const Header = ({ dataForHeader }) => {
-  const getSearchValue = () => {}
-
+const Header = () => {
   return (
-    <header className='header'>
-      <div className='wrapper'>
+    <header className="header">
+      <div className="wrapper">
         <CurrentDate />
         <Parameters />
-        <div className='search'>
-          <Search getSearchValue={getSearchValue} />
+        <div className="search">
+          <Search />
         </div>
-        <div className='user-block'>
-          <Company dataForHeader={dataForHeader} />
+        <div className="user-block">
+          <Company />
           <User />
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
