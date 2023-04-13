@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const MessageError = ({ errors }) => {
-  return <div style={{ color: '#EA1A4F' }}>{errors}</div>
+interface MessageErrorProps {
+  errors: string[];
 }
 
-export default MessageError
+const MessageError = ({ errors }: MessageErrorProps) => {
+  return <div style={{ color: '#EA1A4F' }}>{errors}</div>;
+};
+
+export default MessageError;

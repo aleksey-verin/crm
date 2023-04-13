@@ -1,44 +1,48 @@
-import React from 'react'
+import React from 'react';
 
-const ScoreText = ({ score }) => {
-  let text = 'Отлично'
+interface ScoreTextProps {
+  score: 'perfect' | 'good' | 'bad';
+}
+
+const ScoreText = ({ score }: ScoreTextProps) => {
+  let text = 'Отлично';
 
   let styleText = {
     color: '#28a879',
     borderColor: '#28a879',
-    backgroundColor: '#dbf8ef',
-  }
+    backgroundColor: '#dbf8ef'
+  };
 
   switch (score) {
     case 'perfect':
-      break
+      break;
     case 'good':
-      text = 'Хорошо'
+      text = 'Хорошо';
       styleText = {
         color: '#122945',
         borderColor: '#ADBFDF',
-        backgroundColor: '#D8E4FB',
-      }
-      break
+        backgroundColor: '#D8E4FB'
+      };
+      break;
     case 'bad':
-      text = 'Плохо'
+      text = 'Плохо';
       styleText = {
         color: '#EA1A4F',
         borderColor: '#EA1A4F',
-        backgroundColor: '#FEE9EF',
-      }
-      break
+        backgroundColor: '#FEE9EF'
+      };
+      break;
     default:
-      break
+      break;
   }
 
   return (
-    <div className='score-block'>
-      <div style={styleText} className='block-text'>
+    <div className="score-block">
+      <div style={styleText} className="block-text">
         {text}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ScoreText
+export default ScoreText;
