@@ -1,9 +1,9 @@
 import React from 'react';
 
-import CurrentDate from './header/CurrentDate';
-import Parameters from './header/Parameters';
-import Company from './header/Company';
-import User from './header/User';
+import CurrentDate from './Header/CurrentDate';
+import Parameters from './Header/Parameters';
+import Company from './Header/Company';
+import User from './Header/User';
 import Search from './commonUI/Search';
 
 const Header = () => {

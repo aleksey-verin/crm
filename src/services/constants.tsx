@@ -1,6 +1,6 @@
-import Score from '../components/pageCalls/SpreadSheet/Content/Score/Score';
-import ScoreDots from '../components/pageCalls/SpreadSheet/Content/Score/ScoreDots';
-import ScoreText from '../components/pageCalls/SpreadSheet/Content/Score/ScoreText';
+import Score from '../components/PageCalls/SpreadSheet/Content/Score/Score';
+import ScoreDots from '../components/PageCalls/SpreadSheet/Content/Score/ScoreDots';
+import ScoreText from '../components/PageCalls/SpreadSheet/Content/Score/ScoreText';
 import { IEmployees } from '../store/types';
 
 export const filtersValues = {
