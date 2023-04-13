@@ -5,15 +5,14 @@ import ImgArrow from '../../images/ImgArrow';
 import { useAppDispatch } from '../../../store/store';
 import {
   resetOffset,
-  selectorCallsFilters,
-  setDateEnd,
-  setDateStart
+  setFilterDateEnd,
+  setFilterDateStart
 } from '../../../store/reducers/callsFiltersSlice';
 import { useSelector } from 'react-redux';
 
 const Period = () => {
   const dispatch = useAppDispatch();
-  const { date_start, date_end } = useSelector(selectorCallsFilters);
+  // const { date_start, date_end } = useSelector(selectorCallsFilters);
 
   const menuItems = ['3 дня', 'Неделя', 'Месяц', 'Год', 'Период'];
   const menuItemsLength = menuItems.length;
@@ -30,7 +29,7 @@ const Period = () => {
 
   const menu = useRef<HTMLDivElement>(null);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     if (e.target.textContent !== activeItem) {
       dispatch(resetOffset());
       // clearOffset();
@@ -39,7 +38,7 @@ const Period = () => {
     }
   };
 
-  const hideForm = (e) => {
+  const hideForm = (e: any) => {
     if (menu.current && !menu.current.contains(e.target)) {
       setMenuOpen(false);
     }
@@ -92,8 +91,8 @@ const Period = () => {
     const end = format(new Date(), 'yyyy-MM-dd');
     setValueStart(start);
     setValueEnd(end);
-    dispatch(setDateStart(start));
-    dispatch(setDateEnd(end));
+    dispatch(setFilterDateStart(start));
+    dispatch(setFilterDateEnd(end));
     // setInputStart(valueStart);
     // setInputEnd(valueEnd);
     // getPeriodForRequest(start, end);
@@ -106,8 +105,8 @@ const Period = () => {
 
   const getCustomPeriod = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setDateStart(valueStart));
-    dispatch(setDateEnd(valueEnd));
+    dispatch(setFilterDateStart(valueStart));
+    dispatch(setFilterDateEnd(valueEnd));
     // setValueStart(inputStart);
     // setValueEnd(inputEnd);
     setActiveItem(custom);
@@ -145,14 +144,14 @@ const Period = () => {
                 <input
                   onChange={(e) => setValueStart(e.target.value)}
                   className="inputPeriod"
-                  value={valueStart}
+                  value={valueStart as string}
                   type="date"
                 />
                 <div>-</div>
                 <input
                   onChange={(e) => setValueEnd(e.target.value)}
                   className="inputPeriod"
-                  value={valueEnd}
+                  value={valueEnd as string}
                   type="date"
                 />
               </div>

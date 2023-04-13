@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, IRootState } from '../store';
 import { ICalls, ICallsData } from '../types';
 import { createUrl } from '../../services/fetch';
+import { iFilters } from './callsFiltersSlice';
 
 interface initialStateTypes {
   data: ICalls[] | null;
@@ -21,17 +22,7 @@ const initialState = {
 
 export const getCallsData = createAsyncThunk<
   ICallsData, // return type
-  {
-    start?: string;
-    end?: string;
-    offset?: number;
-    search?: string;
-    in_out?: string;
-    from_type?: string;
-    person_id?: string;
-    sources?: string;
-    errors?: string;
-  }, // args type
+  iFilters, // args type
   {
     dispatch: AppDispatch;
     state: IRootState; // thunkAPI type
@@ -53,7 +44,7 @@ export const getCallsData = createAsyncThunk<
       return await response.json();
     } else {
       const error = await response.json();
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   } catch (error) {
     console.log(error);

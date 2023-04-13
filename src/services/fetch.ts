@@ -56,21 +56,21 @@
 // export default fetchRequest;
 
 export const createUrl = ({
-  start = '',
-  end = '',
+  date_start = '',
+  date_end = '',
   offset = 0,
   search = '',
   in_out = '',
   from_type = '',
-  person_id = '',
+  from_persons = '',
   sources = '',
   errors = ''
 }) => {
   let _url = new URL('https://api.skilla.ru/mango/getList');
 
-  if (start || end) {
-    _url.searchParams.append('date_start', start);
-    _url.searchParams.append('date_end', end);
+  if (date_start || date_end) {
+    _url.searchParams.append('date_start', date_start);
+    _url.searchParams.append('date_end', date_end);
   }
   if (offset) {
     _url.searchParams.append('offset', String(offset));
@@ -84,8 +84,8 @@ export const createUrl = ({
   if (from_type) {
     _url.searchParams.append('from_type[] ', from_type);
   }
-  if (person_id) {
-    _url.searchParams.append('from_persons[]', person_id);
+  if (from_persons) {
+    _url.searchParams.append('from_persons[]', from_persons);
   }
   if (sources) {
     _url.searchParams.append('sources[]', sources);

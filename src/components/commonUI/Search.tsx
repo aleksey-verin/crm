@@ -1,17 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ImgClose from '../images/ImgClose';
 import ImgSearch from '../images/ImgSearch';
+import { useAppDispatch } from '../../store/store';
+import { setFilterSearch } from '../../store/reducers/callsFiltersSlice';
 
 const defaultValue = '';
 
 const Search = ({ type = '', text = '' }) => {
+  const dispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const search = e.target.value;
+    setValue(search);
+    dispatch(setFilterSearch(search));
+    console.log(search);
   };
 
   const handleForm = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -22,6 +29,7 @@ const Search = ({ type = '', text = '' }) => {
 
   const clearInput = () => {
     setValue(defaultValue);
+    dispatch(setFilterSearch(defaultValue));
     if (inputRef.current) {
       inputRef.current.focus();
     }

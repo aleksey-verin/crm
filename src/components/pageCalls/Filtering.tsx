@@ -42,7 +42,7 @@ const Filtering = () => {
         // filter={filterByInOutCalls}
         // menuItems={filters.types}
         />
-        <FilterMenuCustomEmployees
+        {/* <FilterMenuCustomEmployees
         // getFilter={getFilterByEmployees}
         // filter={filterByEmployees}
         // employeesData={employeesData}
@@ -64,7 +64,7 @@ const Filtering = () => {
         />
         <FilterMenuEmpty
         // menuItems={filters.errors}
-        />
+        /> */}
       </div>
     </div>
   );
