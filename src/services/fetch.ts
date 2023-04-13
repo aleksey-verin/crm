@@ -82,7 +82,7 @@ export const createUrl = ({
     _url.searchParams.append('in_out', in_out);
   }
   if (from_type) {
-    _url.searchParams.append('from_type[] ', from_type);
+    _url.searchParams.append('from_type[]', from_type);
   }
   if (from_persons) {
     _url.searchParams.append('from_persons[]', from_persons);

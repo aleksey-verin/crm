@@ -1,33 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ImgArrow from '../../images/ImgArrow';
-import { filtersValues } from '../../../services/constants';
-import { useSelector } from 'react-redux';
-import {
-  selectorCallsFilters,
-  setFilterInOutCalls
-} from '../../../store/reducers/callsFiltersSlice';
-import { useAppDispatch } from '../../../store/store';
+import { menuItemTypes } from '../../../services/constants';
+import Loader from '../../commonUI/Loader';
 
-const FilterMenu = () => {
-  const dispatch = useAppDispatch();
+interface FilterMenuProps {
+  menuItems: menuItemTypes[];
+  filter: string;
+  getFiltered: (params: string) => void;
+}
 
-  const { filters } = useSelector(selectorCallsFilters);
-  const { in_out } = filters;
+const FilterMenu = ({ menuItems, filter, getFiltered }: FilterMenuProps) => {
+  // if (!menuItems.length) <Loader />;
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuItems = filtersValues.inOutCalls;
   const [activeItem, setActiveItem] = useState<string>(menuItems[0].name);
 
   useEffect(() => {
-    if (!in_out) {
+    if (!filter) {
       setActiveItem(menuItems[0].name);
     }
-  }, [in_out]);
+  }, [filter]);
 
   useEffect(() => {
-    const request = menuItems.find((item) => item.name === activeItem);
-    if (request) {
-      dispatch(setFilterInOutCalls(request.request));
+    const employee = menuItems.find((item) => item.name === activeItem);
+    if (employee) {
+      getFiltered(String(employee.request));
     }
   }, [activeItem]);
 
@@ -77,7 +74,7 @@ const FilterMenu = () => {
                 <div
                   key={item.name}
                   className={`filter-menu__item ${activeItem === item.name ? 'active' : ''}`}>
-                  {item.name}
+                  {item.element ? item.element : item.name}
                 </div>
               );
             })}

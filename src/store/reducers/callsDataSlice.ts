@@ -1,11 +1,15 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, IRootState } from '../store';
-import { ICalls, ICallsData } from '../types';
+import { ICalls, ICallsData, IEmployees } from '../types';
 import { createUrl } from '../../services/fetch';
 import { iFilters } from './callsFiltersSlice';
+import { getEmployeesFromData, getEmployeesList } from '../../services/helpers';
+import { filtersValues, menuItemTypes } from '../../services/constants';
 
 interface initialStateTypes {
   data: ICalls[] | null;
+  employees: IEmployees[] | null;
+  menuEmployees: menuItemTypes[];
   totalRows: number | null;
   isLoading: boolean;
   isSuccess: boolean;
@@ -14,6 +18,8 @@ interface initialStateTypes {
 
 const initialState = {
   data: null,
+  employees: null,
+  menuEmployees: [],
   totalRows: null,
   isLoading: false,
   isSuccess: false,
@@ -63,7 +69,10 @@ export const callsDataSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(getCallsData.fulfilled, (state, { payload }: PayloadAction<ICallsData>) => {
+      const employeesList = getEmployeesFromData(payload.results);
       state.data = payload.results;
+      state.employees = employeesList;
+      state.menuEmployees = getEmployeesList(filtersValues.personCalls, employeesList);
       state.totalRows = Number(payload.total_rows);
       state.isLoading = false;
       state.isSuccess = true;

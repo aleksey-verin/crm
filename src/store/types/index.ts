@@ -1,3 +1,12 @@
+export interface IEmployees {
+  name: string;
+  request: string | null;
+  id?: number;
+  person_name?: string;
+  person_surname?: string;
+  person_avatar?: string;
+}
+
 export interface ICallsData {
   total_rows: string;
   results: ICalls[];

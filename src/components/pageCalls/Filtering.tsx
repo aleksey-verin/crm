@@ -2,19 +2,41 @@ import React from 'react';
 import Search from '../commonUI/Search';
 import FilterMenu from './Filtering/FilterMenu';
 import ImgClose from '../images/ImgClose';
-// import filters from '../../services/constants';
-import FilterMenuCustomEmployees from './Filtering/FilterMenuCustomEmployees';
-import FilterMenuEmpty from './Filtering/FilterMenuEmpty';
-import FilterMenuCustomScore from './Filtering/FilterMenuCustomScore';
+import { useAppDispatch } from '../../store/store';
+import { useSelector } from 'react-redux';
+import {
+  resetAllFilters,
+  selectorCallsFilters,
+  setFilterErrors,
+  setFilterInOutCalls,
+  setFilterPerson,
+  setFilterSource,
+  setFilterTypeCall
+} from '../../store/reducers/callsFiltersSlice';
+import { filtersValues, menuItemTypes } from '../../services/constants';
+import { selectorCallsDataSlice } from '../../store/reducers/callsDataSlice';
 
 const Filtering = () => {
-  // const resetFilters = () => {
-  //   getFilterByInOutCalls('')
-  //   getFilterByTypeCalls('')
-  //   getFilterByEmployees('')
-  //   getFilterBySource('')
-  //   getFilterByErrors('')
-  // }
+  const dispatch = useAppDispatch();
+  const { menuEmployees, isLoading } = useSelector(selectorCallsDataSlice);
+  const { filters } = useSelector(selectorCallsFilters); ///
+  const { in_out, from_type, from_persons, sources, errors } = filters;
+
+  const getFilteredByInOut = (params: string) => {
+    dispatch(setFilterInOutCalls(params));
+  };
+  const getFilteredByTypeCall = (params: string) => {
+    dispatch(setFilterTypeCall(params));
+  };
+  const getFilteredByPerson = (params: string) => {
+    dispatch(setFilterPerson(params));
+  };
+  const getFilteredBySource = (params: string) => {
+    dispatch(setFilterSource(params));
+  };
+  const getFilteredByResults = (params: string) => {
+    dispatch(setFilterErrors(params));
+  };
 
   return (
     <div className="filtering">
@@ -22,49 +44,47 @@ const Filtering = () => {
         <Search type="calls" text="Поиск по звонкам" />
       </div>
       <div className="filters">
-        {/* {filterByInOutCalls ||
-        filterByEmployees ||
-        filterByTypeCalls ||
-        filterBySource ||
-        filterByErrors ? (
-          <div onClick={resetFilters} className='filter'>
-            <div className='filter-item'>
-              <div className='filter-item__text'>Сбросить фильтры</div>
+        {in_out || from_type || from_persons || sources || errors ? (
+          <div onClick={() => dispatch(resetAllFilters())} className="filter">
+            <div className="filter-item">
+              <div className="filter-item__text">Сбросить фильтры</div>
             </div>
-            <div className='filter-item__close'>
+            <div className="filter-item__close">
               <ImgClose />
             </div>
           </div>
-        ) : null} */}
+        ) : null}
 
         <FilterMenu
-        // getFilter={getFilterByInOutCalls}
-        // filter={filterByInOutCalls}
-        // menuItems={filters.types}
-        />
-        {/* <FilterMenuCustomEmployees
-        // getFilter={getFilterByEmployees}
-        // filter={filterByEmployees}
-        // employeesData={employeesData}
+          getFiltered={getFilteredByInOut}
+          filter={in_out}
+          menuItems={filtersValues.inOutCalls}
         />
         <FilterMenu
-        // getFilter={getFilterByTypeCalls}
-        // filter={filterByTypeCalls}
-        // menuItems={filters.calls}
+          getFiltered={getFilteredByPerson}
+          filter={from_persons}
+          menuItems={menuEmployees.length ? menuEmployees : filtersValues.personCalls}
         />
         <FilterMenu
-        // getFilter={getFilterBySource}
-        // filter={filterBySource}
-        // menuItems={filters.sources}
+          getFiltered={getFilteredByTypeCall}
+          filter={from_type}
+          menuItems={filtersValues.typesCalls}
         />
-        <FilterMenuCustomScore
-        // getFilter={getFilterByErrors}
-        // filter={filterByErrors}
-        // menuItems={filters.results}
+        <FilterMenu
+          getFiltered={getFilteredBySource}
+          filter={sources}
+          menuItems={filtersValues.sources}
         />
-        <FilterMenuEmpty
-        // menuItems={filters.errors}
-        /> */}
+        <FilterMenu
+          getFiltered={getFilteredByResults}
+          filter={errors}
+          menuItems={filtersValues.results}
+        />
+        <FilterMenu
+          getFiltered={getFilteredByResults}
+          filter={errors}
+          menuItems={filtersValues.errors}
+        />
       </div>
     </div>
   );

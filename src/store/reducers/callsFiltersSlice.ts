@@ -48,11 +48,26 @@ export const callsFiltersSlice = createSlice({
     resetOffset: (state) => {
       state.filters.offset = initialState.filters.offset;
     },
+    setFilterSearch: (state, action) => {
+      state.filters.search = action.payload;
+    },
     setFilterInOutCalls: (state, action) => {
       state.filters.in_out = action.payload;
     },
-    setFilterSearch: (state, action) => {
-      state.filters.search = action.payload;
+    setFilterTypeCall: (state, action) => {
+      state.filters.from_type = action.payload;
+    },
+    setFilterPerson: (state, action) => {
+      state.filters.from_persons = action.payload;
+    },
+    setFilterSource: (state, action) => {
+      state.filters.sources = action.payload;
+    },
+    setFilterErrors: (state, action) => {
+      state.filters.errors = action.payload;
+    },
+    resetAllFilters: (state) => {
+      state.filters = initialState.filters;
     }
   }
 });
@@ -64,8 +79,13 @@ export const {
   setFilterDateEnd,
   setOffset,
   resetOffset,
+  setFilterSearch,
   setFilterInOutCalls,
-  setFilterSearch
+  setFilterTypeCall,
+  setFilterPerson,
+  setFilterSource,
+  setFilterErrors,
+  resetAllFilters
 } = callsFiltersSlice.actions;
 
 export default callsFiltersSlice.reducer;

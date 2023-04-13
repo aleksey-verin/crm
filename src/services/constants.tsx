@@ -1,9 +1,15 @@
+import Score from '../components/pageCalls/SpreadSheet/Content/Score/Score';
+import ScoreDots from '../components/pageCalls/SpreadSheet/Content/Score/ScoreDots';
+import ScoreText from '../components/pageCalls/SpreadSheet/Content/Score/ScoreText';
+import { IEmployees } from '../store/types';
+
 export const filtersValues = {
   inOutCalls: [
     { name: 'Все типы', request: '' },
     { name: 'Входящие', request: '1' },
     { name: 'Исходящие', request: '0' }
   ],
+  personCalls: [{ name: 'Все сотрудники', request: '' }],
   typesCalls: [
     { name: 'Все звонки', request: '' },
     { name: 'Все клиенты', request: 'clients' },
@@ -33,11 +39,25 @@ export const filtersValues = {
     { name: 'Все оценки', request: '' },
     { name: 'Распознать', request: 'noerrors' },
     { name: 'Скрипт не использован', request: 'noscript' },
-    { name: 'bad', request: '' },
-    { name: 'good', request: '' },
-    { name: 'perfect', request: '' },
-    { name: '*', request: '' },
-    { name: '**', request: '' },
-    { name: '***', request: '' }
+    { name: 'bad', request: '', element: <ScoreText score="bad" /> },
+    { name: 'good', request: '', element: <ScoreText score="good" /> },
+    { name: 'perfect', request: '', element: <ScoreText score="perfect" /> },
+    { name: '*', request: '', element: <ScoreDots score="bad" /> },
+    { name: '**', request: '', element: <ScoreDots score="good" /> },
+    { name: '***', request: '', element: <ScoreDots score="perfect" /> }
   ]
 };
+
+export interface menuItemTypes {
+  name: string;
+  request: string;
+  element?: JSX.Element;
+}
+
+// export interface filtersValuesTypes {
+//   inOutCalls: IEmployees[];
+//   typesCalls: IEmployees[];
+//   sources: IEmployees[];
+//   errors: IEmployees[];
+//   results: IEmployees[];
+// }
