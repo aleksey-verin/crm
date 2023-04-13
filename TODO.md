@@ -1,0 +1,6 @@
+- pagination and offset
+- filter by employees (refactoring)
+- other pages and sidebar
+- mobile version
+- proxy for audio
+- maybe rename files and folders to lowercase
