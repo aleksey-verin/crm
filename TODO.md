@@ -1,6 +1,8 @@
 - pagination and offset
 - filter by employees (refactoring)
-- other pages and sidebar
+- other pages and links in sidebar
 - mobile version
 - proxy for audio
 - maybe rename files and folders to lowercase
+- get rid of some 'any' types
+- rewrite styles to css.modules
