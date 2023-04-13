@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './Sidebar/Logo';
-import Menu from './Sidebar/Menu';
-import Actions from './Sidebar/Actions';
+import Logo from './sidebarbar/Logo';
+import Menu from './sidebarbar/Menu';
+import Actions from './sidebarbar/Actions';
 
 const Sidebar = () => {
   return (
