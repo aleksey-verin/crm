@@ -1,10 +1,7 @@
 import React from 'react';
-import Logo from './sidebar/Logo';
-import Menu from './sidebar/Menu';
-import Actions from './sidebar/Actions';
-// import Logo from './sidebar/Logo';
-// import Menu from './sidebar/Menu';
-// import Actions from './sidebar/Actions';
+import Logo from './Sidebar/Logo';
+import Menu from './Sidebar/Menu';
+import Actions from './Sidebar/Actions';
 
 const Sidebar = () => {
   return (
@@ -12,9 +9,6 @@ const Sidebar = () => {
       <Logo />
       <Menu />
       <Actions />
-      {/* <Logo />
-      <Menu />
-      <Actions /> */}
     </menu>
   );
 };
