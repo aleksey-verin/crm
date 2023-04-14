@@ -7,7 +7,7 @@ const PageOther = () => {
     <main className="other">
       <div className="other-page">
         <div className="other-page_text">
-          Страница в разработке. Перейдите на страницу <Link to={ROUTES.CALLS}>Звонки</Link>
+          Страница в разработке. Перейдите на страницу <Link to={ROUTES.CALLS}>"Звонки"</Link>
         </div>
       </div>
     </main>

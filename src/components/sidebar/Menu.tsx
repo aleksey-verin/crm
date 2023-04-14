@@ -28,8 +28,8 @@ const sidebarItems = [
 const Menu = () => {
   return (
     <div className="menu">
-      {sidebarItems.map(({ name, image, path }) => (
-        <NavLink className="menu-item" to={path}>
+      {sidebarItems.map(({ name, image, path }, index) => (
+        <NavLink key={index} className="menu-item" to={path}>
           {/* <div className="menu-item"> */}
           {image}
           <div className="menu-item__text">{name}</div>
