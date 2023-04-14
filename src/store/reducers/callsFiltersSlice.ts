@@ -67,14 +67,7 @@ export const callsFiltersSlice = createSlice({
       state.filters.errors = action.payload;
     },
     resetAllFilters: (state) => {
-      // state.filters = initialState.filters;
-      state.filters.offset = initialState.filters.offset;
-      state.filters.search = initialState.filters.search;
-      state.filters.in_out = initialState.filters.in_out;
-      state.filters.from_type = initialState.filters.from_type;
-      state.filters.from_persons = initialState.filters.from_persons;
-      state.filters.sources = initialState.filters.sources;
-      state.filters.errors = initialState.filters.errors;
+      state.filters = initialState.filters;
     }
   }
 });

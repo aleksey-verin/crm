@@ -63,7 +63,6 @@ export const callsDataSlice = createSlice({
   initialState: initialState as initialStateTypes,
   reducers: {
     clearData: (state) => {
-      console.log('clear data');
       state.data = initialState.data;
     }
   },

@@ -57,12 +57,10 @@ export const getEmployeesList = (
   firstItem: menuItemTypes[],
   list: IEmployees[]
 ): menuItemTypes[] => {
-  // const firstItem = { name: 'Все сотрудники', request: '' };
   const employeesItems = list.map((item) => ({
     name: item.name,
     request: item.request
   })) as menuItemTypes[];
-  console.log(employeesItems);
   if (employeesItems) {
     return [...firstItem, ...employeesItems];
   }
