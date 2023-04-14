@@ -12,26 +12,6 @@ import { ROUTES } from './routes/routes';
 import PageOther from './pages/PageOther';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const {
-    filters,
-    filters: { date_start }
-  } = useSelector(selectorCallsFilters);
-
-  // useEffect(() => {
-  //   console.log('request');
-  //   if (!filters) return;
-  //   // dispatch(resetOffset());
-  //   dispatch(getCallsData(filters));
-  // }, [filters]);
-
-  useEffect(() => {
-    console.log('request');
-    if (!date_start) return;
-    // dispatch(resetOffset());
-    dispatch(getCallsData(filters));
-  }, [filters]);
-
   return (
     <div className="App">
       <HashRouter>

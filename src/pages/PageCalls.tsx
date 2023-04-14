@@ -3,7 +3,7 @@ import Info from '../components/pageCalls/Info';
 import Filtering from '../components/pageCalls/Filtering';
 import SpreadSheet from '../components/pageCalls/SpreadSheet';
 import { useSelector } from 'react-redux';
-import { selectorCallsDataSlice } from '../store/reducers/callsDataSlice';
+import { getCallsData, selectorCallsDataSlice } from '../store/reducers/callsDataSlice';
 import { selectorCallsFilters } from '../store/reducers/callsFiltersSlice';
 import { useAppDispatch } from '../store/store';
 import { setOffset } from '../store/reducers/callsFiltersSlice';
@@ -12,8 +12,16 @@ const PageCalls = () => {
   const dispatch = useAppDispatch();
   const { totalRows, isLoading } = useSelector(selectorCallsDataSlice);
   const {
-    filters: { offset }
+    filters,
+    filters: { date_start, offset }
   } = useSelector(selectorCallsFilters);
+
+  useEffect(() => {
+    console.log('request');
+    if (!date_start) return;
+    // dispatch(resetOffset());
+    dispatch(getCallsData(filters));
+  }, [filters]);
 
   useEffect(() => {
     console.log('useEf scroll');
@@ -23,7 +31,6 @@ const PageCalls = () => {
         if (scrollTop + clientHeight >= scrollHeight - 50 && totalRows > offset + 50) {
           if (!isLoading) {
             dispatch(setOffset());
-            // setOffset(() => offset + 50);
           }
         }
       }
