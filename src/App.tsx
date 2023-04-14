@@ -6,18 +6,29 @@ import PageCalls from './pages/PageCalls';
 import { useAppDispatch } from './store/store';
 import { getCallsData } from './store/reducers/callsDataSlice';
 import { useSelector } from 'react-redux';
-import { selectorCallsFilters } from './store/reducers/callsFiltersSlice';
+import { resetOffset, selectorCallsFilters } from './store/reducers/callsFiltersSlice';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './routes/routes';
 import PageOther from './pages/PageOther';
 
 function App() {
   const dispatch = useAppDispatch();
-  const { filters } = useSelector(selectorCallsFilters);
+  const {
+    filters,
+    filters: { date_start }
+  } = useSelector(selectorCallsFilters);
+
+  // useEffect(() => {
+  //   console.log('request');
+  //   if (!filters) return;
+  //   // dispatch(resetOffset());
+  //   dispatch(getCallsData(filters));
+  // }, [filters]);
 
   useEffect(() => {
     console.log('request');
-    if (!filters) return;
+    if (!date_start) return;
+    // dispatch(resetOffset());
     dispatch(getCallsData(filters));
   }, [filters]);
 

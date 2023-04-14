@@ -7,7 +7,7 @@ import { getEmployeesFromData, getEmployeesList } from '../../services/helpers';
 import { filtersValues, menuItemTypes } from '../../services/constants';
 
 interface initialStateTypes {
-  data: ICalls[] | null;
+  data: ICalls[];
   employees: IEmployees[] | null;
   menuEmployees: menuItemTypes[];
   totalRows: number | null;
@@ -17,7 +17,7 @@ interface initialStateTypes {
 }
 
 const initialState = {
-  data: null,
+  data: [],
   employees: null,
   menuEmployees: [],
   totalRows: null,
@@ -61,7 +61,12 @@ export const getCallsData = createAsyncThunk<
 export const callsDataSlice = createSlice({
   name: 'callsDataSlice',
   initialState: initialState as initialStateTypes,
-  reducers: {},
+  reducers: {
+    clearData: (state) => {
+      console.log('clear data');
+      state.data = initialState.data;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getCallsData.pending, (state) => {
       state.isLoading = true;
@@ -70,7 +75,7 @@ export const callsDataSlice = createSlice({
     });
     builder.addCase(getCallsData.fulfilled, (state, { payload }: PayloadAction<ICallsData>) => {
       const employeesList = getEmployeesFromData(payload.results);
-      state.data = payload.results;
+      state.data = [...state.data, ...payload.results];
       state.employees = employeesList;
       state.menuEmployees = getEmployeesList(filtersValues.personCalls, employeesList);
       state.totalRows = Number(payload.total_rows);
@@ -85,5 +90,7 @@ export const callsDataSlice = createSlice({
 });
 
 export const selectorCallsDataSlice = (state: IRootState) => state.callsDataSlice;
+
+export const { clearData } = callsDataSlice.actions;
 
 export default callsDataSlice.reducer;

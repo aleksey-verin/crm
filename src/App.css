@@ -980,4 +980,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.other-page p {
+  margin-bottom: 10px;
+  text-align: center;
 }/*# sourceMappingURL=App.css.map */

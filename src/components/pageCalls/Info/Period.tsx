@@ -8,15 +8,14 @@ import {
   setFilterDateEnd,
   setFilterDateStart
 } from '../../../store/reducers/callsFiltersSlice';
-import { useSelector } from 'react-redux';
+import { clearData } from '../../../store/reducers/callsDataSlice';
 
 const Period = () => {
   const dispatch = useAppDispatch();
-  // const { date_start, date_end } = useSelector(selectorCallsFilters);
 
   const menuItems = ['3 дня', 'Неделя', 'Месяц', 'Год', 'Период'];
-  const menuItemsLength = menuItems.length;
   const [three, week, month, year, custom] = menuItems;
+  const menuItemsLength = menuItems.length;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(three);
@@ -24,17 +23,11 @@ const Period = () => {
   const [valueStart, setValueStart] = useState<string | null>(null);
   const [valueEnd, setValueEnd] = useState<string | null>(null);
 
-  // const [inputStart, setInputStart] = useState(null);
-  // const [inputEnd, setInputEnd] = useState(null);
-
   const menu = useRef<HTMLDivElement>(null);
 
   const handleClick = (e: any) => {
     if (e.target.textContent !== activeItem) {
-      dispatch(resetOffset());
-      // clearOffset();
       setActiveItem(e.target.textContent);
-      // setMenuOpen(false);
     }
   };
 
@@ -64,12 +57,8 @@ const Period = () => {
 
   useEffect(() => {
     if (activeItem === custom) {
-      // setValueStart(inputStart);
-      // setValueEnd(inputEnd);
-      // getPeriodForRequest(inputStart, inputEnd);
       return;
     }
-
     let period = {};
     switch (activeItem) {
       case three:
@@ -91,26 +80,23 @@ const Period = () => {
     const end = format(new Date(), 'yyyy-MM-dd');
     setValueStart(start);
     setValueEnd(end);
-    dispatch(setFilterDateStart(start));
-    dispatch(setFilterDateEnd(end));
-    // setInputStart(valueStart);
-    // setInputEnd(valueEnd);
-    // getPeriodForRequest(start, end);
+    handleFilters(start, end);
   }, [activeItem]);
-
-  // useEffect(() => {
-  //   setInputStart(valueStart);
-  //   setInputEnd(valueEnd);
-  // }, [valueStart]);
 
   const getCustomPeriod = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setFilterDateStart(valueStart));
-    dispatch(setFilterDateEnd(valueEnd));
-    // setValueStart(inputStart);
-    // setValueEnd(inputEnd);
+    if (valueStart && valueEnd) {
+      handleFilters(valueStart, valueEnd);
+    }
     setActiveItem(custom);
     setMenuOpen(false);
+  };
+
+  const handleFilters = (start: string, end: string) => {
+    dispatch(clearData());
+    dispatch(resetOffset());
+    dispatch(setFilterDateStart(start));
+    dispatch(setFilterDateEnd(end));
   };
 
   return (

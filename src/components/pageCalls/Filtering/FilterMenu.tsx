@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import ImgArrow from '../../images/ImgArrow';
 import { menuItemTypes } from '../../../services/constants';
 import Loader from '../../commonUI/Loader';
+import { useAppDispatch } from '../../../store/store';
+import { clearData } from '../../../store/reducers/callsDataSlice';
+import { resetOffset } from '../../../store/reducers/callsFiltersSlice';
 
 interface FilterMenuProps {
   menuItems: menuItemTypes[];
@@ -10,7 +13,7 @@ interface FilterMenuProps {
 }
 
 const FilterMenu = ({ menuItems, filter, getFiltered }: FilterMenuProps) => {
-  // if (!menuItems.length) <Loader />;
+  const dispatch = useAppDispatch();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<string>(menuItems[0].name);
@@ -24,6 +27,8 @@ const FilterMenu = ({ menuItems, filter, getFiltered }: FilterMenuProps) => {
   useEffect(() => {
     const employee = menuItems.find((item) => item.name === activeItem);
     if (employee) {
+      dispatch(clearData());
+      dispatch(resetOffset());
       getFiltered(String(employee.request));
     }
   }, [activeItem]);
