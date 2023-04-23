@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import ImgClose from '../images/ImgClose';
 import ImgSearch from '../images/ImgSearch';
 import { useAppDispatch } from '../../store/store';
-import { setFilterSearch } from '../../store/reducers/callsFiltersSlice';
+import { resetOffset, setFilterSearch } from '../../store/reducers/callsFiltersSlice';
+import { clearData } from '../../store/reducers/callsDataSlice';
 
 const defaultValue = '';
 
@@ -17,8 +18,9 @@ const Search = ({ type = '', text = '' }) => {
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value;
     setValue(search);
+    dispatch(clearData());
+    dispatch(resetOffset());
     dispatch(setFilterSearch(search));
-    console.log(search);
   };
 
   const handleForm = (e: React.ChangeEvent<HTMLFormElement>) => {
