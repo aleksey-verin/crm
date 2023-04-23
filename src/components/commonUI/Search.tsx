@@ -4,24 +4,30 @@ import ImgSearch from '../images/ImgSearch';
 import { useAppDispatch } from '../../store/store';
 import { resetOffset, setFilterSearch } from '../../store/reducers/callsFiltersSlice';
 import { clearData } from '../../store/reducers/callsDataSlice';
+import useDebounce from '../../hooks/useDebounce';
 
 const defaultValue = '';
 
 const Search = ({ type = '', text = '' }) => {
   const dispatch = useAppDispatch();
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [open, setOpen] = useState<boolean>(false);
+  const [value, setValue] = useState<string>(defaultValue);
+  const debouncedValue = useDebounce<string>(value, 500);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value;
     setValue(search);
+  };
+
+  useEffect(() => {
     dispatch(clearData());
     dispatch(resetOffset());
-    dispatch(setFilterSearch(search));
-  };
+    dispatch(setFilterSearch(value));
+  }, [debouncedValue]);
 
   const handleForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +37,8 @@ const Search = ({ type = '', text = '' }) => {
 
   const clearInput = () => {
     setValue(defaultValue);
+    dispatch(clearData());
+    dispatch(resetOffset());
     dispatch(setFilterSearch(defaultValue));
     if (inputRef.current) {
       inputRef.current.focus();
