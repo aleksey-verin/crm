@@ -37,6 +37,9 @@ const Filtering = () => {
   const getFilteredByResults = (params: string) => {
     dispatch(setFilterErrors(params));
   };
+  const resetFilters = () => {
+    dispatch(resetAllFilters());
+  };
 
   return (
     <div className="filtering">
@@ -45,7 +48,7 @@ const Filtering = () => {
       </div>
       <div className="filters">
         {in_out || from_type || from_persons || sources || errors ? (
-          <div onClick={() => dispatch(resetAllFilters())} className="filter">
+          <div onClick={resetFilters} className="filter">
             <div className="filter-item">
               <div className="filter-item__text">Сбросить фильтры</div>
             </div>

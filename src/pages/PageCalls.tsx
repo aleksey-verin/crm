@@ -7,7 +7,6 @@ import { clearData, getCallsData, selectorCallsDataSlice } from '../store/reduce
 import { resetAllFilters, selectorCallsFilters } from '../store/reducers/callsFiltersSlice';
 import { useAppDispatch } from '../store/store';
 import { setOffset } from '../store/reducers/callsFiltersSlice';
-import { da } from 'date-fns/locale';
 
 const PageCalls = () => {
   const dispatch = useAppDispatch();
