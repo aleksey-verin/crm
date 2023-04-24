@@ -13,7 +13,7 @@ const Search = ({ type = '', text = '' }) => {
 
   const [open, setOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>(defaultValue);
-  const debouncedValue = useDebounce<string>(value, 3000);
+  const debouncedValue = useDebounce<string>(value, 500);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
