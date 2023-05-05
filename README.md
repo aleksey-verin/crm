@@ -1,4 +1,4 @@
-# App for real estate agents
+# Development of a CRM system for an enterprise
 
 ## Summary
 
