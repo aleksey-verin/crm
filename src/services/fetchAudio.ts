@@ -6,13 +6,11 @@ const fetchAudio = async (record: string, partnership_id: string) => {
     _url.searchParams.append('partnership_id', partnership_id);
   }
 
-  const _token = 'testtoken';
-
   const headersList = {
     'Content-Type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
     'Content-Transfer-Encoding': 'binary',
     'Content-Disposition': 'filename="record.mp3"',
-    Authorization: `Bearer ${_token}`,
+    Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
     Accept: '*/*',
     'Access-Control-Allow-Credentials': 'true'
   };

@@ -37,7 +37,6 @@ export const getCallsData = createAsyncThunk<
   }
 >('getCallsData', async (params, thunkAPI) => {
   const url = createUrl(params);
-  // const _token = 'testtoken';
   const headersList = {
     Accept: '*/*',
     Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
