@@ -26,6 +26,8 @@ const initialState = {
   isError: false
 };
 
+console.log(import.meta.env.VITE_TOKEN);
+
 export const getCallsData = createAsyncThunk<
   ICallsData, // return type
   iFilters, // args type
@@ -35,10 +37,10 @@ export const getCallsData = createAsyncThunk<
   }
 >('getCallsData', async (params, thunkAPI) => {
   const url = createUrl(params);
-  const _token = 'testtoken';
+  // const _token = 'testtoken';
   const headersList = {
     Accept: '*/*',
-    Authorization: `Bearer ${_token}`
+    Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
   };
 
   try {
