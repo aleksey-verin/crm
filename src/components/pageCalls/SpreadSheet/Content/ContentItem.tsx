@@ -25,7 +25,6 @@ const ContentItem = ({ data, allChecked }: ContentItemProps) => {
     id,
     in_out,
     date,
-    person_id,
     person_avatar,
     from_number,
     to_number,
@@ -35,7 +34,6 @@ const ContentItem = ({ data, allChecked }: ContentItemProps) => {
     source,
     status,
     errors,
-    results,
     time,
     record,
     partnership_id
@@ -149,7 +147,6 @@ const ContentItem = ({ data, allChecked }: ContentItemProps) => {
       <div className="content-item__score seven">
         {errors && !time ? <MessageError errors={errors} /> : null}
         {time ? <Recognize /> : null}
-        {/* <Score score='perfect' /> */}
       </div>
       <div
         className="content-item__duration eight duration-open"

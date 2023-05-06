@@ -1,12 +1,7 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import PageCalls from './pages/PageCalls';
-import { useAppDispatch } from './store/store';
-import { getCallsData } from './store/reducers/callsDataSlice';
-import { useSelector } from 'react-redux';
-import { resetOffset, selectorCallsFilters } from './store/reducers/callsFiltersSlice';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './routes/routes';
 import PageOther from './pages/PageOther';

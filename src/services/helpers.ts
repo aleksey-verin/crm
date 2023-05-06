@@ -66,16 +66,3 @@ export const getEmployeesList = (
   }
   return firstItem;
 };
-
-// export function groupDataByDate(data) {
-//   const result = data.reduce((acc, item) => {
-//     const date = item.date_notime;
-//     if (acc[date]) {
-//       acc[date].push(item);
-//     } else {
-//       acc[date] = [item];
-//     }
-//     return acc;
-//   }, {});
-//   return result;
-// }

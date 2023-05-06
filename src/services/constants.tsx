@@ -1,7 +1,5 @@
-import Score from '../components/pageCalls/SpreadSheet/Content/Score/Score';
 import ScoreDots from '../components/pageCalls/SpreadSheet/Content/Score/ScoreDots';
 import ScoreText from '../components/pageCalls/SpreadSheet/Content/Score/ScoreText';
-import { IEmployees } from '../store/types';
 
 export const filtersValues = {
   inOutCalls: [
@@ -53,11 +51,3 @@ export interface menuItemTypes {
   request: string;
   element?: JSX.Element;
 }
-
-// export interface filtersValuesTypes {
-//   inOutCalls: IEmployees[];
-//   typesCalls: IEmployees[];
-//   sources: IEmployees[];
-//   errors: IEmployees[];
-//   results: IEmployees[];
-// }

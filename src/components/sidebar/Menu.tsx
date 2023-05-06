@@ -30,52 +30,10 @@ const Menu = () => {
     <div className="menu">
       {sidebarItems.map(({ name, image, path }, index) => (
         <NavLink key={index} className="menu-item" to={path}>
-          {/* <div className="menu-item"> */}
           {image}
           <div className="menu-item__text">{name}</div>
-          {/* </div> */}
         </NavLink>
       ))}
-      {/* <div className="menu-item">
-      <ImgResults />
-        <div className="menu-item__text">Итоги</div>
-      </div>
-      <div className="menu-item">
-        <ImgOrders />
-        <div className="menu-item__text">Заказы</div>
-      </div>
-      <div className="menu-item">
-        <ImgMessages />
-        <div className="menu-item__text">Сообщения</div>
-      </div>
-      <div className="menu-item checked">
-        <ImgCalls />
-        <div className="menu-item__text">Звонки</div>
-      </div>
-      <div className="menu-item">
-        <ImgCounterparties />
-        <div className="menu-item__text">Контрагенты</div>
-      </div>
-      <div className="menu-item">
-        <ImgDocuments />
-        <div className="menu-item__text">Документы</div>
-      </div>
-      <div className="menu-item">
-        <ImgPerformers />
-        <div className="menu-item__text">Исполнители</div>
-      </div>
-      <div className="menu-item">
-        <ImgReports />
-        <div className="menu-item__text">Отчеты</div>
-      </div>
-      <div className="menu-item">
-        <ImgKnowledge />
-        <div className="menu-item__text">База знаний</div>
-      </div>
-      <div className="menu-item">
-        <ImgSettings />
-        <div className="menu-item__text">Настройки</div>
-      </div> */}
     </div>
   );
 };
