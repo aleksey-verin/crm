@@ -26,8 +26,6 @@ const initialState = {
   isError: false
 };
 
-console.log(import.meta.env.VITE_TOKEN);
-
 export const getCallsData = createAsyncThunk<
   ICallsData, // return type
   iFilters, // args type
@@ -54,7 +52,6 @@ export const getCallsData = createAsyncThunk<
       return thunkAPI.rejectWithValue(error.message);
     }
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue(error);
   }
 });

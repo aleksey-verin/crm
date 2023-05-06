@@ -23,7 +23,6 @@ const PageCalls = () => {
 
   useEffect(() => {
     return () => {
-      console.log('clear');
       dispatch(clearData());
       dispatch(resetAllFilters());
     };

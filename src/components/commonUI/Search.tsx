@@ -32,7 +32,6 @@ const Search = ({ type = '', text = '' }) => {
 
   const handleForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(value);
     setValue(defaultValue);
   };
 
